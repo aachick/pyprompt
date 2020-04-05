@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+usage="<pyprompt_setup.sh> shell-configuration-file"
+
+if [ "$#" -ne 1 ]; then
+	echo $usage
+	exit 1
+fi
+
+conf_file=$1
+
 cat >$HOME/.pyrc <<EOF
 import os
 import socket
@@ -23,7 +32,6 @@ p = prompt()
 sys.ps1 = p
 EOF
 
-echo "export PYTHONSTARTUP=$HOME/.pyrc" >> $HOME/.zshrc
+echo "export PYTHONSTARTUP=$HOME/.pyrc" >> $conf_file
 
-source $HOME/.zshrc
-
+source $conf_file
