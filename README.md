@@ -4,10 +4,13 @@ A futile project customizing python's interactive prompt.
 
 This is for people on non-Windows systems that miss the Windows prompt.
 
-* **Step 1**: Add the prompt configuration in a file name `~/.pyrc`. It must be readable.
+* **Setup**: Simply run the `pyprompt_setup.sh` script in your terminal. Then, check out the results by using python in interactive mode!
 
-```bash
-tee $HOME/.pyrc <<EOF
+### Explanations
+
+The following snippet sets the prompt variable, `sys.ps1`, as custom prompt object. Because the variable is not a `str`, the `str()` method will be called on the object to render the prompt.
+
+```python
 import os
 import socket
 import sys
@@ -28,13 +31,4 @@ class prompt:
 
 p = prompt()
 sys.ps1 = p
-EOF
 ```
-
-* **Step 2**: Export python's `PYTHONSTARTUP` environment variable to point to the previously created file in your shell configuration file:
-
-```bash
-echo "export PYTHONSTARTUP=$HOME/.pyrc" >> $HOME/.zshrc
-```
-
-* **Step 3**: Enjoy your new prompt when using python in interactive mode! The prompt also changes when you change directories in python's REPL.
